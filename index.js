@@ -5,7 +5,7 @@ var TOTAL_FILES = 7;
 
 app.use(express.static('./'));
 
-app.get('/audio', (req, res) => {
+app.post('/audio', (req, res) => {
    res.setHeader("content-type", "audio/mp3");
    fs.createReadStream("./files/"+ getRandomInt() +".mp3").pipe(res);
 });
