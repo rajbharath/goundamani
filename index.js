@@ -6,13 +6,14 @@ var TOTAL_FILES = 7;
 app.use(express.static('files'));
 
 app.post('/', (req, res) => {
-    console.log('Audio');
+    console.log('home');
     res.status(200).send(response);
 });
 
-app.post('/audio/:audioName', (req, res) => {
+app.get('/audio/:audioName', (req, res) => {
+    console.log('Audio');
    res.setHeader("content-type", "audio/mp3");
-   fs.createReadStream("./files/"+ getRandomInt() +".mp3").pipe(res);
+   fs.createReadStream("./files/output.mp3").pipe(res);
 });
 
 
@@ -31,9 +32,9 @@ var response = {
   sessionAttributes: {},
   response: {
     outputSpeech: {
-      type: 'SSML',
-      ssml: '<speak><audio src=\"https://4b1ae59f.ngrok.io/1.mp3\" /></speak>'
-    }
+      type: "PlainText",
+      text: "How are you"
+    },
+    shouldEndSession: true
   }
-
 }
